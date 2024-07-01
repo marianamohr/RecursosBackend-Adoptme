@@ -7,11 +7,14 @@ import petsRouter from './routes/pets.router.js';
 import adoptionsRouter from './routes/adoption.router.js';
 import sessionsRouter from './routes/sessions.router.js';
 import dotenv from 'dotenv';
+import cors from 'cors';
+
+app.use(cors());
 
 dotenv.config();
 
 const app = express();
-console.log(process.env);
+
 const PORT = process.env.PORT || 8080;
 const connection = mongoose.connect(process.env.MONGO_URL);
 
