@@ -9,12 +9,12 @@ import sessionsRouter from './routes/sessions.router.js';
 import dotenv from 'dotenv';
 import cors from 'cors';
 
-app.use(cors());
 
 dotenv.config();
 
 const app = express();
 
+app.use(cors());
 const PORT = process.env.PORT || 8080;
 const connection = mongoose.connect(process.env.MONGO_URL);
 
