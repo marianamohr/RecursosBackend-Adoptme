@@ -1,0 +1,29 @@
+openapi: 3.0.0
+info:
+  title: API da AdoptMe
+  description: API para o aplicativo AdoptMe
+  version: 1.0.0
+paths:
+  /api/users/:
+    get:
+      summary: Retornar todos os usuários
+      tags:
+        - Users
+      responses:
+        '200':
+          description: Lista de usuários retornada com sucesso
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    id:
+                      type: string
+                    name:
+                      type: string
+                      example: "João Silva"
+                    email:
+                      type: string
+                      example: "joao@example.com"
