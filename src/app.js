@@ -7,6 +7,8 @@ import petsRouter from "./routes/pets.router.js";
 import adoptionsRouter from "./routes/adoption.router.js";
 import sessionsRouter from "./routes/sessions.router.js";
 
+require("dotenv").config();
+
 const app = express();
 const PORT = process.env.PORT || 8080;
 mongoose.connect(process.env.MONGO_URL);
