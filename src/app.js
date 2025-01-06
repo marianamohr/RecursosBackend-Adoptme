@@ -1,7 +1,6 @@
 import express from "express";
 import mongoose from "mongoose";
 import cookieParser from "cookie-parser";
-import dotenv from "dotenv";
 
 import usersRouter from "./routes/users.router.js";
 import petsRouter from "./routes/pets.router.js";
@@ -11,7 +10,9 @@ import sessionsRouter from "./routes/sessions.router.js";
 import swaggerJSDoc from "swagger-jsdoc";
 import swaggerUiExpress from "swagger-ui-express";
 
-dotenv.config();
+if (process.env.NODE_ENV !== "production") {
+  import("dotenv").then((dotenv) => dotenv.config());
+}
 console.log(`./docs/**/*.yaml`);
 const swaggerOptions = {
   definition: {
