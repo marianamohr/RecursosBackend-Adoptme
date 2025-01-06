@@ -28,7 +28,9 @@ const specs = swaggerJSDoc(swaggerOptions);
 
 const app = express();
 const PORT = process.env.PORT || 8080;
-mongoose.connect(process.env.MONGO_URI);
+const MONGO = process.env.MONGO_URI
+console.log("AAAAAA",MONGO)
+mongoose.connect(MONGO);
 
 app.use(express.json());
 app.use(cookieParser());
