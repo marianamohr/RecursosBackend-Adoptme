@@ -16,6 +16,7 @@ export default class Users {
     }
 
     update = (id,doc) =>{
+         console.log(id,doc)
         return userModel.findByIdAndUpdate(id,{$set:doc})
     }
 

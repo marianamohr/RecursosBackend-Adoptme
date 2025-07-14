@@ -15,6 +15,7 @@ export default class Pet {
     }
 
     update = (id,doc) =>{
+        console.log(id,doc)
         return petModel.findByIdAndUpdate(id,{$set:doc})
     }
 

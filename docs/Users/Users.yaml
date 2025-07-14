@@ -1,0 +1,117 @@
+openapi: 3.0.0
+info:
+  title: User API
+  version: 1.0.0
+paths:
+  /api/users:
+    get:
+      summary: Get all users
+      tags:
+        - Users
+      responses:
+        '200':
+          description: A list of users
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/User'
+        '500':
+          description: Internal server error
+  /api/users/{uid}:
+    get:
+      summary: Get by Id
+      tags:
+        - Users
+      parameters:
+        - name: uid
+          in: path
+          required: true
+          description: The user ID
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Return a user
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/User'
+    put:
+      summary: Update User
+      tags:
+        - User
+      parameters:
+        - name: uid
+          in: path
+          required: true
+          description: User Id
+          schema:
+            type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/requestBodies/updateUser'
+      responses:
+        '200':
+          description: message
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status: 
+                    type: string
+                  message: 
+                    type: string
+components:
+  schemas:
+    User:
+      type: object
+      properties:
+        _id:
+          type: string
+          format: objectid
+          description: The user ID
+        first_name:
+          type: string
+          description: The user's first name
+        last_name:
+          type: string
+          description: The user's last name
+        email:
+          type: string
+          description: The user's email
+        password:
+          type: string
+          description: The user's password
+      example:
+        _id: 5f5f5f5f5f5f5f5f5f5f5f5f
+        first_name: John
+        last_name: Doe
+        email: teste@teste.com
+        password: "123456"
+  requestBodies:
+    updateUser:
+      type: object
+      properties:
+        first_name:
+          type: string
+          description: User first Name
+        last_name:
+          type: string
+          description: User last Name
+        email:
+          type: string
+          description: User email
+        password:
+          type: string
+          description: User password
+      example:
+        first_name: John
+        last_name: Doe
+        email: teste@teste.com
+        password: "123456"

@@ -13,7 +13,17 @@ import swaggerUiExpress from "swagger-ui-express";
 if (process.env.NODE_ENV !== "production") {
   import("dotenv").then((dotenv) => dotenv.config());
 }
-console.log(`./docs/**/*.yaml`);
+
+
+
+const app = express();
+const PORT = process.env.PORT || 8080;
+
+mongoose.connect("mongodb+srv://marianamohr:c9zKW4F8Vadmdn5d@cluster0.zm7bida.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0");
+
+app.use(express.json());
+app.use(cookieParser());
+
 const swaggerOptions = {
   definition: {
     openapi: "3.0.0",
@@ -26,14 +36,6 @@ const swaggerOptions = {
 };
 
 const specs = swaggerJSDoc(swaggerOptions);
-
-const app = express();
-const PORT = process.env.PORT || 8080;
-
-mongoose.connect("mongodb+srv://marianamohr:c9zKW4F8Vadmdn5d@cluster0.zm7bida.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0");
-
-app.use(express.json());
-app.use(cookieParser());
 
 app.use("/api/users", usersRouter);
 app.use("/api/pets", petsRouter);
